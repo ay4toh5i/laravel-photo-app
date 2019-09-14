@@ -14,5 +14,8 @@ const mix = require('laravel-mix');
 mix.ts('resources/ts/app.ts', 'public/js')
   .sass('resources/sass/app.scss', 'public/css')
   .version()
-  .browserSync({proxy: '0.0.0.0:3000',
-                files: ['resources/ts/**/*', 'resources/sass/**/*', 'resource/views/*']});
+  .browserSync({
+    proxy: 'web:80',
+    files: ['resources/ts/**/*', 'resources/sass/**/*', 'resource/views/*'],
+    logLevel: 'debug'
+  });
