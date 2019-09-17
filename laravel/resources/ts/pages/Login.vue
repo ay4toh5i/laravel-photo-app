@@ -70,12 +70,17 @@
       password_confirmation: ''
     }
 
-    login (): void {
-      console.log(this.loginForm)
+    async login () {
+      await console.log('login fire')
+      await this.$store.dispatch('auth/login', this.loginForm)
+
+      this.$router.push('/')
     }
 
-    register (): void {
-      console.log(this.registerForm)
+    async register () {
+      await this.$store.dispatch('auth/register', this.registerForm)
+
+      this.$router.push('/')
     }
   }
 </script>
