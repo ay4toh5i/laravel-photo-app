@@ -1,7 +1,9 @@
 <template>
   <footer class="footer">
-    <button class="button button--link" @click="logout">Logout</button>
-    <RouterLink class="button button--link" to="/login">
+    <button v-if="isLogin" class="button button--link" @click="logout">
+      Logout
+    </button>
+    <RouterLink v-else class="button button--link" to="/login">
       Login / Register
     </RouterLink>
   </footer>
@@ -12,6 +14,10 @@
 
     @Component
     export default class Footer extends Vue {
+      public get isLogin () {
+        return this.$store.getters['auth/check']
+      }
+
       async logout () {
         await this.$store.dispatch('auth/logout')
 
