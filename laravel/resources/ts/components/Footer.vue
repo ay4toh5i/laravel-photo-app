@@ -14,14 +14,20 @@
 
     @Component
     export default class Footer extends Vue {
-      public get isLogin () {
+      get isLogin () {
         return this.$store.getters['auth/check']
+      }
+
+      get apiStatus () {
+        return this.$store.state.auth.apiStatus
       }
 
       async logout () {
         await this.$store.dispatch('auth/logout')
 
-        this.$router.push('/login')
+        if (this.apiStatus) {
+          this.$router.push('/login')
+        }
       }
     }
 </script>

@@ -39,3 +39,8 @@ window.axios.interceptors.request.use(config => {
 
     return config
 })
+
+window.axios.interceptors.response.use(
+    response => response,
+    error => error.response || error
+)
